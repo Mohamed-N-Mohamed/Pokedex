@@ -4,6 +4,7 @@ import PokemonsUI from './PokemonsUI';
 const Pokemons = () => {
   const [pokemons, setPokemons] = useState([]);
   const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+  console.log(loadMore);
 
   const getPokemons = async () => {
     const res = await fetch(loadMore);
@@ -25,6 +26,12 @@ const Pokemons = () => {
     
   }
 
+  //load more pokemons
+  const handleClick = () => {
+    getPokemons()
+    
+  }
+
  
 
 
@@ -33,12 +40,19 @@ const Pokemons = () => {
   }, [])
   return (
     <div className="pokemon-container flex flex-wrap justify-center items-center">
-         {pokemons.map((pokemon) => (
-        <PokemonsUI  name={pokemon.name} image={pokemon.sprites.other.dream_world.front_default}  key={pokemon.id}/>
-        
-
+         {pokemons.map((pokemon) => (     
+        <PokemonsUI  name={pokemon.name} image={pokemon.sprites.other.dream_world.front_default}  key={pokemon.id} id={pokemon.id} type={pokemon.types[0].type.name}/>  
       ))}
+
+
+     
+        <button className="load-more" onClick={handleClick}>Load More Pokemons</button>
+     
     </div>
+
+    
+
+    
   )
 }
 
