@@ -32,8 +32,8 @@ const Pokemons = () => {
    getPokemons()
   }, [])
   return (
-    <div>
-      {pokemons.map((pokemon) => (
+    <div className="pokemon-container flex flex-wrap justify-center items-center">
+         {pokemons.map((pokemon) => (
         <PokemonsUI  name={pokemon.name} image={pokemon.sprites.other.dream_world.front_default}  key={pokemon.id}/>
         
 
